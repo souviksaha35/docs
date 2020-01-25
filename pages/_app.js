@@ -40,7 +40,6 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Layout>
         <Component {...pageProps} />
-
         <style jsx global>
           {baseTheme}
         </style>
