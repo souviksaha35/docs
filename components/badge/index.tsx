@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import withType, { WithTypeProps } from '~/lib/with-type'
+import withType, { WithTypeProps } from '../../lib/with-type'
 
 interface BadgeProps extends WithTypeProps {
   content?: string | React.ReactNode

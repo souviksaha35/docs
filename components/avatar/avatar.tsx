@@ -33,10 +33,6 @@ export const GenericAvatar = React.memo(
         {placeholder ? null : (
           <img
             ref={imgRef}
-            async
-            decoding="async"
-            loading="lazy"
-            importance="low"
             key={src}
             alt={title}
             title={title}

@@ -4,7 +4,15 @@ import Text, { H4 } from '~/components/text'
 import ArrowRight from '~/components/icons/chevron-right'
 import Plus from '~/components/icons/plus'
 
-export function IconCard({ href, buttonHref, icon, label, width, arrowed }) {
+export function IconCard({
+  href,
+  buttonHref,
+  icon,
+  label,
+  width,
+  arrowed,
+  plus
+}) {
   return (
     <NextLink href={href}>
       <a className={cn('icon-card', { button: !!buttonHref })}>
