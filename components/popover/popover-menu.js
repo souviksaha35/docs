@@ -14,79 +14,74 @@ export const Menu = memo(
     tip = true,
     scrollable,
     innerRef
-  }) => {
-    return (
-      <div
-        className={cn('popover', { scrollable }, tipDirection)}
-        ref={innerRef}
-      >
-        {tip && (
-          <div
-            className="triangle"
-            style={{
-              [tipSide]: tipOffset ? `${tipOffset}px` : 0,
-              textAlign: tipSide
-            }}
-          >
-            <Triangle direction={tipDirection} />
-          </div>
-        )}
-        <div className="menu">{children}</div>
+  }) => (
+    <div className={cn('popover', { scrollable }, tipDirection)} ref={innerRef}>
+      {tip && (
+        <div
+          className="triangle"
+          style={{
+            [tipSide]: tipOffset ? `${tipOffset}px` : 0,
+            textAlign: tipSide
+          }}
+        >
+          <Triangle direction={tipDirection} />
+        </div>
+      )}
+      <div className="menu">{children}</div>
 
-        {/* Dynamic Styles */}
-        <style jsx>{`
-          .menu {
-            margin-top: ${marginTop ? marginTop + 'px' : '11px'};
-            width: ${width ? width + 'px' : 'auto'};
-            min-width: ${minWidth ? minWidth + 'px' : 'auto'};
-            padding: ${noPadding ? '0' : '8px 0'};
+      {/* Dynamic Styles */}
+      <style jsx>{`
+        .menu {
+          margin-top: ${marginTop ? marginTop + 'px' : '11px'};
+          width: ${width ? width + 'px' : 'auto'};
+          min-width: ${minWidth ? minWidth + 'px' : 'auto'};
+          padding: ${noPadding ? '0' : '8px 0'};
+        }
+      `}</style>
+
+      {/* Static Styles */}
+      <style jsx>
+        {`
+          .popover {
+            display: inline-block;
+            position: relative;
           }
-        `}</style>
 
-        {/* Static Styles */}
-        <style jsx>
-          {`
-            .popover {
-              display: inline-block;
-              position: relative;
-            }
+          .triangle {
+            display: block;
+            line-height: 11px; /* height of triangle (minus 1 :S) */
+            z-index: 1;
+            text-align: center;
+            position: absolute;
+            top: -1px;
+          }
 
-            .triangle {
-              display: block;
-              line-height: 11px; /* height of triangle (minus 1 :S) */
-              z-index: 1;
-              text-align: center;
-              position: absolute;
-              top: -1px;
-            }
+          .up .triangle {
+            top: -1px;
+          }
 
-            .up .triangle {
-              top: -1px;
-            }
+          .down .triangle {
+            bottom: -12px;
+          }
 
-            .down .triangle {
-              bottom: -12px;
-            }
+          .menu {
+            color: var(--geist-foreground);
+            display: inline-block;
+            text-align: left;
+            background: var(--geist-background);
+            max-width: 100vw;
+            box-shadow: var(--shadow-medium);
+            border-radius: 5px;
+          }
 
-            .menu {
-              color: var(--geist-foreground);
-              display: inline-block;
-              text-align: left;
-              background: var(--geist-background);
-              max-width: 100vw;
-              box-shadow: var(--shadow-medium);
-              border-radius: 5px;
-            }
-
-            .scrollable .menu {
-              overflow-y: auto;
-              max-height: calc(100vh - 140px);
-            }
-          `}
-        </style>
-      </div>
-    )
-  }
+          .scrollable .menu {
+            overflow-y: auto;
+            max-height: calc(100vh - 140px);
+          }
+        `}
+      </style>
+    </div>
+  )
 )
 
 export const Item = memo(

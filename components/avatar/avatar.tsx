@@ -45,6 +45,24 @@ export const GenericAvatar = React.memo(
         )}
         <style jsx>
           {`
+            .geist-avatar {
+              flex-shrink: 0;
+              border-radius: 100%;
+              display: inline-block;
+              overflow: hidden;
+              border: 1px solid var(--accents-2);
+              line-height: 0;
+              vertical-align: top;
+              mask-image: -webkit-radial-gradient(circle, white, black);
+              -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
+              background: var(--geist-background);
+              transition: border 0.2s ease, background 0.2s ease;
+            }
+            .geist-avatar img {
+              width: 100%;
+              height: 100%;
+            }
+
             img {
               opacity: 0;
               transition: opacity 0.2s ease-in;

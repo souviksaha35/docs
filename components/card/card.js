@@ -24,7 +24,7 @@ export function IconCard({
           </span>
         )}
         {plus && (
-          <span className="arrow">
+          <span className="plus">
             <Plus />
           </span>
         )}
@@ -54,6 +54,23 @@ export function IconCard({
             margin-left: auto;
             color: var(--accents-3);
             transition: color 0.12s ease;
+          }
+
+          .plus {
+            background: var(--geist-success);
+            border-radius: 5px;
+            margin-left: auto;
+            color: var(--geist-background);
+            height: 32px;
+            width: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.12s ease;
+          }
+
+          .icon-card:hover .plus {
+            background: var(--geist-success-dark);
           }
 
           .icon-card:hover .arrow {

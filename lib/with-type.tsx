@@ -1,78 +1,62 @@
-import React from 'react'
+import { useMemo } from 'react'
+import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-export type Types =
-  | 'secondary'
-  | 'warning'
-  | 'success'
-  | 'default'
-  | 'alert'
-  | 'error'
-  | 'lite'
-  | 'ghost'
-  | 'alert'
-  | 'violet'
+export const types = [
+  'secondary',
+  'warning',
+  'success',
+  'default',
+  'alert',
+  'error',
+  'lite',
+  'ghost',
+  'alert',
+  'violet'
+]
 
-interface Options {
-  hasFill?: boolean
-  defaultFill?: boolean
-}
+const getCn = (type: string, fill: boolean) => {
+  if (!type || typeof type !== 'string') return null
 
-export interface WithTypeProps {
-  className?: string
-  type?: Types
-  fill?: boolean
-  children?: React.ReactNode
-}
+  // Sanitize
+  type = type.toLowerCase()
 
-interface ForwardedRefProps {
-  forwardedRef?: React.Ref<HTMLElement>
-}
+  // Not a valid type prop
+  if (!types.includes(type)) return null
 
-const getCn = (type?: Types, fill?: boolean) => {
-  if (!type) return null
   return ['geist-themed', `geist-${type}`, fill ? `geist-${type}-fill` : null]
 }
 
-const withType = <P extends WithTypeProps>(
-  Component: React.ComponentType<P>,
-  opts: Options = {}
-) => {
-  const { defaultFill, hasFill } = opts
-
-  const Comp: React.ComponentType<P & ForwardedRefProps> = ({
-    className,
-    forwardedRef,
-    ...props
-  }) => {
+const withType = (Component: any, opts: any = {}) => {
+  const Comp = ({ className, ...props }: any, ref: any) => {
     // Do not immediately destructure these props, they should still be passed
     const { type } = props
-    let fill = props.fill || defaultFill
+    let { fill = opts.defaultFill || undefined } = props
 
     // Disable fill styling if hasFill option is false
-    if (hasFill === false) {
-      fill = defaultFill || false
+    if (opts.hasFill === false) {
+      fill = opts.defaultFill || false
     }
 
     // Combine any possible className prop and the generated .geist-themed classnames
-    const classNames = cn(getCn(type, fill), className)
+    const classNames = useMemo(() => {
+      return cn(getCn(type, fill), className)
+    }, [type, fill, className])
 
-    return (
-      <Component className={classNames} {...(props as P)} ref={forwardedRef} />
-    )
+    return <Component className={classNames} {...props} ref={ref} />
   }
 
-  const forwardRef: React.ComponentType<P> = (
-    props: P,
-    ref: React.Ref<HTMLElement>
-  ) => {
-    return <Comp {...(props as P)} forwardedRef={ref} />
-  }
+  Comp.getInitialProps = Component.getInitialProps
 
-  // Name for React DevTools
-  forwardRef.displayName = Component.displayName || Component.name
+  return Comp
+}
 
-  return React.forwardRef(forwardRef)
+withType.propTypes = {
+  Component: PropTypes.element.isRequired,
+  opts: PropTypes.shape({
+    hasFill: PropTypes.bool,
+    defaultFill: PropTypes.bool
+  })
 }
 
 export default withType
