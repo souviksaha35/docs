@@ -1,4 +1,3 @@
-
 import { Code, InlineCode } from '~/components/text/code'
 import { HelpLink } from '~/components/text/link'
 import Note from '~/components/text/note'
@@ -271,13 +270,14 @@ Update some fields of a project either with its name or id.
 
 #### Request Parameters
 
-| Key                 | <HelpLink href="#api-basics/types" hasIcon>Type</HelpLink> | Required | Description                                                                                            |
-| ------------------- | ---------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------ |
-| **framework**       | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | The framework that is being used for this project. When `null` is used no framework is used.           |
-| **publicSource**    | <HelpLink href="#api-basics/types">Boolean</HelpLink>      | No       | Specifies wether the source code and logs of the deployments for this project should be public or not. |
-| **buildCommand**    | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | The build command for this project. When `null` is used this value will be automatically detected.     |
-| **devCommand**      | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | The dev command for this project. When `null` is used this value will be automatically detected.       |
-| **outputDirectory** | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | The output directory of the project. When `null` is used this value will be automatically detected.    |
+| Key                 | <HelpLink href="#api-basics/types" hasIcon>Type</HelpLink> | Required | Description                                                                                                                           |
+| ------------------- | ---------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| **framework**       | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | The framework that is being used for this project. When `null` is used no framework is used.                                          |
+| **publicSource**    | <HelpLink href="#api-basics/types">Boolean</HelpLink>      | No       | Specifies wether the source code and logs of the deployments for this project should be public or not.                                |
+| **buildCommand**    | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | The build command for this project. When `null` is used this value will be automatically detected.                                    |
+| **devCommand**      | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | The dev command for this project. When `null` is used this value will be automatically detected.                                      |
+| **outputDirectory** | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | The output directory of the project. When `null` is used this value will be automatically detected.                                   |
+| **rootDirectory**   | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | The name of a directory or relative path to the source code of your project. When `null` is used it will default to the project root. |
 
 ##### Example Request
 
