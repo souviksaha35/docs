@@ -78,6 +78,7 @@ They can be changed on the dashboard or through the projects API.
 | **devCommand**      | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | Either a command that is executed during development or `null` for auto detection. |
 | **buildCommand**    | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | Either a command that is executed during build time or `null` for auto detection.  |
 | **outputDirectory** | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | The name of a directory or relative path to the output of the build.               |
+| **rootDirectory**   | <HelpLink href="#api-basics/types">String</HelpLink>       | No       | The name of a directory or relative path to the source code of your project.       |
 
 If the `publicSource` property is not set for the first deployment, the API will return an error containing information about the detected framework from `@now/frameworks`, which can be used for the next request to complete the deployment.
 
