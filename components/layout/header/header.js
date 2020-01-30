@@ -224,7 +224,6 @@ class Header extends Component {
       router,
       user,
       userLoaded,
-      zenModeActive,
       isAmp,
       hideHeader,
       detached,
@@ -268,69 +267,67 @@ class Header extends Component {
                 data-amp-bind-class={buildAmpNavClass('main-navigation')}
                 className={cn('main-navigation', { active: false })}
               >
-                {!zenModeActive && (
-                  <div className="navigation-items">
-                    <NavigationItem
-                      href="/docs"
-                      active={
-                        router.pathname.startsWith('/docs') &&
-                        !router.pathname.startsWith('/docs/api') &&
-                        !router.pathname.startsWith('/docs/integrations') &&
-                        !router.pathname.startsWith('/docs/now-cli') &&
-                        !router.pathname.startsWith('/docs/runtimes') &&
-                        !router.pathname.startsWith('/docs/configuration')
-                      }
-                      onClick={handleIndexClick}
-                    >
-                      Docs
-                    </NavigationItem>
-                    <NavigationItem
-                      href="/guides"
-                      active={router.pathname.startsWith('/guides')}
-                      onClick={handleIndexClick}
-                    >
-                      Guides
-                    </NavigationItem>
+                <div className="navigation-items">
+                  <NavigationItem
+                    href="/docs"
+                    active={
+                      router.pathname.startsWith('/docs') &&
+                      !router.pathname.startsWith('/docs/api') &&
+                      !router.pathname.startsWith('/docs/integrations') &&
+                      !router.pathname.startsWith('/docs/now-cli') &&
+                      !router.pathname.startsWith('/docs/runtimes') &&
+                      !router.pathname.startsWith('/docs/configuration')
+                    }
+                    onClick={handleIndexClick}
+                  >
+                    Docs
+                  </NavigationItem>
+                  <NavigationItem
+                    href="/guides"
+                    active={router.pathname.startsWith('/guides')}
+                    onClick={handleIndexClick}
+                  >
+                    Guides
+                  </NavigationItem>
 
-                    <div
-                      className={cn('developer-dropdown desktop-only', {
-                        active:
-                          router.pathname.startsWith('/docs/api') ||
-                          router.pathname.startsWith('/docs/integrations') ||
-                          router.pathname.startsWith('/docs/now-cli') ||
-                          router.pathname.startsWith('/docs/runtimes') ||
-                          router.pathname.startsWith('/docs/configuration')
-                      })}
-                    >
-                      <MenuPopOver
-                        title="Reference"
-                        offsetArrowLeft={60}
-                        primaryList={[
-                          {
-                            title: 'Now CLI',
-                            url: '/docs/now-cli'
-                          },
-                          {
-                            title: 'Configuration',
-                            url: '/docs/configuration'
-                          },
-                          {
-                            title: 'Runtimes',
-                            url: '/docs/runtimes'
-                          },
-                          {
-                            title: 'Platform API',
-                            url: '/docs/api'
-                          },
-                          {
-                            title: 'Integrations API',
-                            url: '/docs/integrations'
-                          }
-                        ]}
-                      />
-                    </div>
+                  <div
+                    className={cn('developer-dropdown desktop-only', {
+                      active:
+                        router.pathname.startsWith('/docs/api') ||
+                        router.pathname.startsWith('/docs/integrations') ||
+                        router.pathname.startsWith('/docs/now-cli') ||
+                        router.pathname.startsWith('/docs/runtimes') ||
+                        router.pathname.startsWith('/docs/configuration')
+                    })}
+                  >
+                    <MenuPopOver
+                      title="Reference"
+                      offsetArrowLeft={60}
+                      primaryList={[
+                        {
+                          title: 'Now CLI',
+                          url: '/docs/now-cli'
+                        },
+                        {
+                          title: 'Configuration',
+                          url: '/docs/configuration'
+                        },
+                        {
+                          title: 'Runtimes',
+                          url: '/docs/runtimes'
+                        },
+                        {
+                          title: 'Platform API',
+                          url: '/docs/api'
+                        },
+                        {
+                          title: 'Integrations API',
+                          url: '/docs/integrations'
+                        }
+                      ]}
+                    />
                   </div>
-                )}
+                </div>
               </Navigation>
             )}
           </div>
@@ -349,9 +346,9 @@ class Header extends Component {
               </div>
 
               <div className="right-nav">
-                <Navigation className="user-navigation">
-                  <AmpUserFeedback />
-                  {!zenModeActive && userLoaded && (
+                {userLoaded && (
+                  <Navigation className="user-navigation">
+                    <AmpUserFeedback />
                     <Fragment>
                       {!user ? (
                         <Fragment>
@@ -387,8 +384,8 @@ class Header extends Component {
                         </Fragment>
                       )}
                     </Fragment>
-                  )}
-                </Navigation>
+                  </Navigation>
+                )}
                 <div className="menu-arrow" onClick={onToggleNavigation}>
                   <MenuToggle expanded={navigationActive} />
                 </div>
@@ -604,7 +601,6 @@ class Header extends Component {
           }
 
           :global(.header .user-navigation) {
-            padding-right: 0;
           }
 
           @keyframes load {
@@ -619,6 +615,7 @@ class Header extends Component {
           :global(.header .user-navigation) {
             animation-name: load;
             animation-duration: 1s;
+            padding-right: 0;
           }
 
           .avatar-wrapper {
