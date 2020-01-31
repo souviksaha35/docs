@@ -1,0 +1,11 @@
+import Snippet from '~/components/snippet'
+import Caption from '~/components/text/caption'
+
+With a Scully app set up, it is ready to deploy live with [ZEIT Now](/docs/v2).
+
+Using [Now CLI](/download), deploy your app with **a single command**:
+
+<Snippet dark text="now" />
+<Caption>Deploying your ${props.name} app with Now CLI.</Caption>
+
+If you want to deploy your ${props.name} ${props.type} when you push to a Git repository, you can use either [ZEIT Now for GitHub](/docs/v2/git-integrations/zeit-now-for-github), [ZEIT Now for GitLab](/docs/v2/git-integrations/zeit-now-for-gitlab), or [ZEIT Now for Bitbucket](/docs/v2/git-integrations/zeit-now-for-bitbucket) to have your project automatically deployed on every push, and the [production domain](https://zeit.co/docs/v2/custom-domains/#adding-a-domain) updated on push to master.
