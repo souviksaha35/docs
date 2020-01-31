@@ -8,15 +8,14 @@ const Tabs = ({
   disabled,
   selected,
   defaultSelected = 0,
-  onChange,
-  borderless
+  onChange
 }) => {
   let [activeTab, setActiveTab] = useState(defaultSelected)
   // override if it exists
   activeTab = selected || activeTab
 
   return (
-    <div className={cn('tabs', { disabled, borderless })}>
+    <div className={cn('tabs', { disabled })}>
       <div className="tabs-row">
         {tabs.map((tabName, index) => (
           <button
@@ -43,8 +42,7 @@ const Tabs = ({
       <style jsx>{`
         .tab {
           height: 34px;
-          padding: 0 20px;
-          text-align: center;
+          padding: 0 24px;
           user-select: none;
           color: #999;
           font-size: 16px;
@@ -109,6 +107,7 @@ const Tabs = ({
           overflow-y: hidden;
           overflow-x: auto;
           position: relative;
+          margin-bottom: 32px;
         }
 
         .tabs-row::after {
@@ -119,27 +118,6 @@ const Tabs = ({
           bottom: 0;
           left: 0;
           background: var(--accents-2);
-        }
-
-        .tabs.borderless .tabs-row {
-          margin-bottom: 0;
-          box-shadow: 0 -1px inset var(--accents-2);
-        }
-        .tabs.borderless .tab {
-          border: 0;
-          border-bottom: 3px solid transparent;
-          background: transparent;
-          transition: border 0.2s ease, color 0.2s ease;
-          padding: 0;
-          margin-right: 25px;
-        }
-        .tabs.borderless .tab[disabled] {
-          border-color: var(--geist-foreground);
-          background: transparent;
-        }
-        .tabs.borderless.disabled .tab[disabled] {
-          border-color: var(--accents-3);
-          background: transparent;
         }
       `}</style>
     </div>
