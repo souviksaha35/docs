@@ -2,10 +2,11 @@ import Snippet from '~/components/snippet'
 import Caption from '~/components/text/caption'
 
 export const Author = ({ name }) => <span>{name}</span>
+export const Type = ({ type }) => <span>{type}</span>
 
-With a <Author name={props.name} /> app set up, it is ready to deploy live with [ZEIT Now](/docs/v2).
+With a <Author name={props.name} /> <Type type={props.type} /> set up, it is ready to deploy live with [ZEIT Now](/docs/v2).
 
-Using [Now CLI](/download), deploy your app with **a single command**:
+Using [Now CLI](/download), deploy your <Type type={props.type} /> with **a single command**:
 
 <Snippet dark text="now" />
-<Caption>Deploying your <Author name={props.name} /> app with Now CLI.</Caption>
+<Caption>Deploying your <Author name={props.name} /> <Type type={props.type} /> with Now CLI.</Caption>
